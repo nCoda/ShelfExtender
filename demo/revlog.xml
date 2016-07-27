@@ -1,0 +1,17 @@
+    <revlog>
+        <revision revnumber="0">
+            <message>first commit!</message>
+            <userid>bs</userid>
+            <date>Sat Apr 30 23:09:54 2016 -0400</date>
+        </revision>
+        <revision revnumber="1">
+            <message>fix a spelling mistake</message>
+            <userid>bs</userid>
+            <date>Tue Dec 08 01:25:03 2015 -0500</date>
+        </revision>
+        <revision revnumber="2">
+            <message>add some more text</message>
+            <userid>fu</userid>
+            <date>Tue Mar 03 15:00:00 2015 -0500</date>
+        </revision>
+    </revlog>
