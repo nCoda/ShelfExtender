@@ -1,6 +1,10 @@
 ShelfExtender
 =============
 
+..image:: https://circleci.com/gh/nCoda/ShelfExtender.svg?style=svg
+    :alt: ShelfExtender on CircleCI
+    :target: https://circleci.com/gh/nCoda/ShelfExtender
+
 Programmatically fake a Mercurial repository.
 
 Need to convince your boss that you've been working on a project for four months---definitely not
