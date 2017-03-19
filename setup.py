@@ -27,7 +27,8 @@ Configuration for installation with setuptools.
 '''
 
 from setuptools import setup, Command
-import shelfex  # for __version__
+from metadata import SHELFEX_METADATA
+import versioneer
 
 
 class PyTest(Command):
@@ -45,28 +46,36 @@ class PyTest(Command):
         raise SystemExit(errno)
 
 
-with open('README.rst', 'r') as file_pointer:
-    _LONG_DESCRIPTION = file_pointer.read()
+try:
+    with open('README.rst', 'r') as file_pointer:
+        _LONG_DESCRIPTION = file_pointer.read()
+except IOError:
+    _LONG_DESCRIPTION = SHELFEX_METADATA['description']
+
+_CMDCLASS = versioneer.get_cmdclass()
+_CMDCLASS.update({'test': PyTest})
 
 setup(
-    name = 'ShelfExtender',
-    version = shelfex.__version__,
-    packages = ['shelfex'],
+    name=SHELFEX_METADATA['name'],
+    version=versioneer.get_version(),
+    packages=['shelfex'],
 
-    install_requires = ['mercurial-hug'],
-    tests_require = ['pytest>2.7,<3'],
+    install_requires=['mercurial-hug'],
+    tests_require=['pytest>2.7,<3'],
 
-    cmdclass = {'test': PyTest},
+    cmdclass=_CMDCLASS,
+    # TODO: after upgrading to Versioneer 0.19:
+    # cmdclass=versioneer.get_cmdclass({'test': PyTest}),
 
     # metadata for upload to PyPI
-    author = 'Christopher Antila',
-    author_email = 'christopher@antila.ca',
-    description = 'Programmatically fake a Mercurial repository.',
-    long_description = _LONG_DESCRIPTION,
-    license = 'GPLv3+',
-    keywords = 'vcs, version control, mercurial, shelving',
-    url = 'https://goldman.ncodamusic.org/diffusion/SHELF/',
-    classifiers =[
+    author=SHELFEX_METADATA['author'],
+    author_email=SHELFEX_METADATA['author_email'],
+    description=SHELFEX_METADATA['description'],
+    long_description=_LONG_DESCRIPTION,
+    license=SHELFEX_METADATA['license'],
+    keywords='vcs, version control, mercurial, shelving',
+    url=SHELFEX_METADATA['url'],
+    classifiers=[
         'Development Status :: 3 - Alpha',
         'Programming Language :: Python :: 2.7',
         'Programming Language :: Python :: Implementation :: CPython',
